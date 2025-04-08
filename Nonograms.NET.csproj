@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>resource\app_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="data\search_dir.dat" />
+    <None Remove="gd.ngc" />
+    <None Remove="loung-cat.ng" />
+    <None Remove="maryo.ngc" />
+    <None Remove="resource\cross.png" />
+    <None Remove="resource\marker.png" />
+    <None Remove="smile.ng" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="data\puzzles\gd.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\loung-cat.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\maryo.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\app_icon.ico" />
+    <Content Include="resource" />
+    <Content Include="resource\bucket.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\cross.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\eraser.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\marker.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\pencil.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\smile.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NonogramLib\NonogramLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ColorPicker">
+      <HintPath>..\ColorPicker\bin\Debug\net9.0-windows\ColorPicker.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="data\search_dir.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="Nonograms.NET.CreateDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nonograms.NET"
+        mc:Ignorable="d"
+        Title="New puzzle" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <WrapPanel Margin="5">
+            <TextBlock Text="Width:  "/>
+            <Slider Name="WidthSel" Grid.Row="0" Minimum="1" Maximum="255" Value="16" TickFrequency="1" IsSnapToTickEnabled="True" MinWidth="255"/>
+            <TextBox MaxLines="1" MaxLength="3" Text="{Binding ElementName=WidthSel, Path=Value}"/>
+        </WrapPanel>
+        <WrapPanel Margin="5" Grid.Row="1">
+            <TextBlock Text="Height: "/>
+            <Slider Name="HeightSel" Grid.Row="1" Minimum="1" Maximum="255" Value="16" TickFrequency="1" IsSnapToTickEnabled="True" MinWidth="255"/>
+            <TextBox MaxLines="1" MaxLength="3" Text="{Binding ElementName=HeightSel, Path=Value}"/>
+        </WrapPanel>
+        <WrapPanel Margin="5" Grid.Row="2">
+            <CheckBox Name="ModeSel"/>
+            <TextBlock Text="Colored puzzle"/>
+        </WrapPanel>
+        <Button Grid.Row="3" Content="Create" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Padding="10, 0" Click="Submit"/>
+    </Grid>
+</Window>
