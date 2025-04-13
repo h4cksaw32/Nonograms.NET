@@ -1,0 +1,3 @@
+[submodule "NonogramLib"]
+	path = NonogramLib
+	url = https://github.com/h4cksaw32/NonogramLib
