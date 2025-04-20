@@ -15,13 +15,16 @@
         </Grid.ColumnDefinitions>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
         <DockPanel>
+            <!--Top menu-->
             <ToolBar DockPanel.Dock="Top">
                 <Button Click="MainMenu">Return to main menu...</Button>
                 <Separator/>
                 <Button Click="EditPaths">Search folders...</Button>
                 <Separator/>
+                <!--Scrapped settings option (add in future updates?)-->
                 <!--Button>Settings</Button-->
             </ToolBar>
+            <!--Puzzle file selection (Tabs for B&W and colored puzzles)-->
             <TabControl Name="SelectDisp">
                 <TabItem Header="B&amp;W">
                     <ListView Name="SelectBW" SelectionChanged="OpenPuzzle">
@@ -67,6 +70,7 @@
                 </TabItem>
             </TabControl>
         </DockPanel>
+        <!--Area for working with puzzles-->
         <Grid Grid.Column="2">
             <DockPanel Name="PuzzleDisp" HorizontalAlignment="Stretch"/>
         </Grid>

@@ -2,6 +2,7 @@
 using NonogramLib;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,14 @@ namespace Nonograms.NET
             StartWindow w = new StartWindow();
             w.Show();
             Close();
+        }
+        private void OpenDoc(object source, RoutedEventArgs ev)
+        {
+            System.Diagnostics.Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/h4cksaw32/Nonograms.NET",
+                UseShellExecute = true
+            });
         }
         private void OpenPuzzle(object source, RoutedEventArgs ev)
         {

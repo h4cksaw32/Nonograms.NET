@@ -8,6 +8,7 @@
         Title="Nonograms.NET - Create" Height="800" Width="1200"
         WindowStartupLocation="CenterOwner">
     <DockPanel>
+            <!--Top mwnu-->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Main menu" Click="MainMenu"/>
             <MenuItem Header="File">
@@ -16,12 +17,11 @@
                 <MenuItem Header="Save" Click="SavePuzzle"/>
                 <MenuItem Header="Save as" Click="SavePuzzleAs"/>
             </MenuItem>
+            <!--Scrapped settings option (add in future updates?)-->
             <!--MenuItem Header="Settings"/-->
-            <MenuItem Header="Help">
-                <MenuItem Header="About"/>
-                <MenuItem Header="Documentation"/>
-            </MenuItem>
+            <MenuItem Header="Help" Click="OpenDoc"/>
         </Menu>
+        <!---Area for editing puzzle-->
         <DockPanel Name="PuzzleDisp" HorizontalAlignment="Stretch"/>
     </DockPanel>
 </Window>
