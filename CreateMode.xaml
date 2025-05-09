@@ -7,19 +7,25 @@
         mc:Ignorable="d"
         Title="Nonograms.NET - Create" Height="800" Width="1200"
         WindowStartupLocation="CenterOwner">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New" CanExecute="CanExecute" Executed="NewPuzzle"/>
+        <CommandBinding Command="ApplicationCommands.Open" CanExecute="CanExecute" Executed="OpenPuzzle"/>
+        <CommandBinding Command="ApplicationCommands.Save" CanExecute="CanExecute" Executed="SavePuzzle"/>
+        <CommandBinding Command="ApplicationCommands.Help" CanExecute="CanExecute" Executed="OpenDoc"/>
+    </Window.CommandBindings>
     <DockPanel>
             <!--Top mwnu-->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Main menu" Click="MainMenu"/>
             <MenuItem Header="File">
-                <MenuItem Header="New puzzle" Click="NewPuzzle"/>
-                <MenuItem Header="Open puzzle" Click="OpenPuzzle"/>
-                <MenuItem Header="Save" Click="SavePuzzle"/>
+                <MenuItem Command="ApplicationCommands.New" Header="New puzzle"/>
+                <MenuItem Command="ApplicationCommands.Open" Header="Open puzzle"/>
+                <MenuItem Command="ApplicationCommands.Save" Header="Save"/>
                 <MenuItem Header="Save as" Click="SavePuzzleAs"/>
             </MenuItem>
             <!--Scrapped settings option (add in future updates?)-->
             <!--MenuItem Header="Settings"/-->
-            <MenuItem Header="Help" Click="OpenDoc"/>
+            <MenuItem Command="ApplicationCommands.Help" Header="Help"/>
         </Menu>
         <!---Area for editing puzzle-->
         <DockPanel Name="PuzzleDisp" HorizontalAlignment="Stretch"/>

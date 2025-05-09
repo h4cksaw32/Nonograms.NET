@@ -10,26 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="data\search_dir.dat" />
-    <None Remove="gd.ngc" />
-    <None Remove="loung-cat.ng" />
-    <None Remove="maryo.ngc" />
-    <None Remove="README.md" />
-    <None Remove="resource\cross.png" />
-    <None Remove="resource\marker.png" />
-    <None Remove="smile.ng" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="data\puzzles\gd.ngc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\puzzles\loung-cat.ng">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\puzzles\maryo.ngc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="README.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -50,9 +30,6 @@
     <Content Include="resource\pencil.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\puzzles\smile.ng">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +40,10 @@
     <Content Include="data\search_dir.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="data\puzzles\" />
   </ItemGroup>
 
 </Project>

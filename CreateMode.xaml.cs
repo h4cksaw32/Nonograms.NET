@@ -20,11 +20,11 @@ using System.Windows.Shapes;
 namespace Nonograms.NET
 {
     /// <summary>
-    /// Interaction logic for CreateMode.xaml
+    /// Signifies the type of puzzle being edited.
     /// </summary>
     internal enum EditMode : byte
     {
-        Idle,
+        Idle, //No puzzle selected
         BW,
         Color
     }
@@ -33,18 +33,34 @@ namespace Nonograms.NET
         private EditMode mode = EditMode.Idle;
         private BWEditUI? bw;
         private ColorEditUI? col;
+        /// <summary>
+        /// The full path of the currently loaded file.
+        /// </summary>
         private string openPath = "";
         public CreateMode()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// For methods that are always enabled.
+        /// </summary>
+        private void CanExecute(object source, CanExecuteRoutedEventArgs ev) { ev.CanExecute = true; }
+        /// <summary>
+        /// Returns to the starting window.
+        /// </summary>
         private void MainMenu(object source, RoutedEventArgs e)
         {
             StartWindow w = new StartWindow();
             w.Show();
             Close();
         }
-        private void OpenDoc(object source, RoutedEventArgs ev)
+        /// <summary>
+        /// Opens the GitHub page on the system's default browser, which contains the documentation.
+        /// </summary>
+        /// <remarks>
+        /// Alternatively, open the README located in the local folder.
+        /// </remarks>
+        private void OpenDoc(object source, ExecutedRoutedEventArgs ev)
         {
             System.Diagnostics.Process.Start(new ProcessStartInfo
             {
@@ -52,17 +68,22 @@ namespace Nonograms.NET
                 UseShellExecute = true
             });
         }
-        private void OpenPuzzle(object source, RoutedEventArgs ev)
+        /// <summary>
+        /// Opens an exsisting puzzle.
+        /// </summary>
+        private void OpenPuzzle(object source, ExecutedRoutedEventArgs ev)
         {
+            //Select the file
             OpenFileDialog fd = new OpenFileDialog();
             fd.Multiselect = false;
             fd.Filter = "B&W Nonograms |*.ng|Color Nonograms |*.ngc|All files |*.*";
             if (fd.ShowDialog() == true)
             {
                 FileStream file = new FileStream(fd.FileName, FileMode.Open, FileAccess.Read);
-                byte check = (byte)file.ReadByte();
+                byte check = (byte)file.ReadByte(); //Read file signature
                 if (check == 0)
                 {
+                    //B&W puzzle
                     mode = EditMode.BW;
                     PuzzleDisp.Children.Clear();
                     PuzzleBW p = Parser.ParseBW(file);
@@ -70,6 +91,7 @@ namespace Nonograms.NET
                 }
                 else if (check == 254)
                 {
+                    //Color puzzle
                     mode = EditMode.Color;
                     PuzzleDisp.Children.Clear();
                     PuzzleCol p = Parser.ParseCol(file);
@@ -77,15 +99,19 @@ namespace Nonograms.NET
                 }
                 else 
                 {
+                    //Invalid signature
                     MessageBox.Show("Could not determine puzzle type.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 openPath = fd.FileName;
-                string[] buffer = openPath.Split('\\', '/');
+                string[] buffer = openPath.Split('\\', '/'); //Get the file name from the full path.
                 Title = $"Nonograms.NET - Create - {buffer[buffer.Length - 1]}";
             }
         }
-        private void NewPuzzle(object source, RoutedEventArgs ev)
+        /// <summary>
+        /// Create a new puzzle using a dialogue to set puzzle properties.
+        /// </summary>
+        private void NewPuzzle(object source, ExecutedRoutedEventArgs ev)
         {
             CreateDialog cd = new CreateDialog();
             if (cd.ShowDialog() == true)
@@ -108,13 +134,18 @@ namespace Nonograms.NET
                 Title = "Nonograms.NET - Create - Untitled";
             }
         }
-        private void SavePuzzle(object source, RoutedEventArgs ev)
+        /// <summary>
+        /// Save the puzzle to the loaded file, or create a new one if no fule is open.
+        /// </summary>
+        private void SavePuzzle(object source, ExecutedRoutedEventArgs ev)
         {
+            //Save as new file if no path is open.
             if (String.IsNullOrEmpty(openPath))
             {
-                SavePuzzleAs(source, ev);
+                SavePuzzleAs(source, new RoutedEventArgs());
                 return;
             }
+            //Save the file to the currently open path.
             switch (mode)
             {
                 case EditMode.BW:
@@ -129,8 +160,12 @@ namespace Nonograms.NET
                     break;
             }
         }
+        /// <summary>
+        /// Save the puzzle as a new file in the location specified by the user.
+        /// </summary>
         private void SavePuzzleAs(object source, RoutedEventArgs ev)
         {
+            //Ask for save location
             SaveFileDialog fd = new SaveFileDialog();
             fd.Filter = "B&W Nonograms |*.ng|Color Nonograms |*.ngc";
             if (fd.ShowDialog() == true)
@@ -148,6 +183,7 @@ namespace Nonograms.NET
                     default:
                         break;
                 }
+                //If no filr is loaded, set the loaded file to the newly saved file.
                 if (String.IsNullOrEmpty(openPath)) 
                 { 
                     openPath = fd.FileName;
@@ -157,18 +193,24 @@ namespace Nonograms.NET
             }
         }
     }
+    /// <summary>
+    /// A button that holds an integer identifier.
+    /// </summary>
     internal class IndexedButton : Button
     {
         public IndexedButton() : base() { }
         public int index { get; set; }
     }
+    /// <summary>
+    /// Represents the states of the panels for solving/creating puzzles.
+    /// </summary>
     internal enum UIMode : byte
     {
-        Idle,
-        Draw,
-        Erase,
-        Cross,
-        Fill,
+        Idle, //Do nothing
+        Draw, //Draw pixel by pixel
+        Erase,//Erase pixel by pixel
+        Cross,//Mark pixel to recordfails or impossible solutions
+        Fill,//Fills ab area (adjacent squares.)
     }
     internal class BWEditUI
     {

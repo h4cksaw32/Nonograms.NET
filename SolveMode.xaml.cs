@@ -20,9 +20,6 @@ using System.Windows.Threading;
 
 namespace Nonograms.NET
 {
-    /// <summary>
-    /// Interaction logic for SolveMode.xaml
-    /// </summary>
     public partial class SolveMode : Window
     {
         private BWSolveUI? bw;
@@ -36,14 +33,20 @@ namespace Nonograms.NET
             SelectBW.ItemsSource = BWEntries;
             SelectCol.ItemsSource = ColEntries;
         }
+        /// <summary>
+        /// Search the folders specified in the application data for puzzle files.
+        /// </summary>
         private void InitList()
         {
+            //Clear the puzzle listings
             BWEntries.Clear();
             ColEntries.Clear();
+            //Read the path configuration
             FileStream stream = new FileStream(".\\data\\search_dir.dat", FileMode.Open, FileAccess.Read);
             StreamReader paths = new StreamReader(stream);
             string buffer;
             DirectoryInfo folder;
+            //Search each path for both types of puzzles
             while (!paths.EndOfStream)
             {
                 buffer = paths.ReadLine() ?? "";
@@ -53,6 +56,9 @@ namespace Nonograms.NET
             }
             paths.Close();
         }
+        /// <summary>
+        /// Helper for <see cref="InitList"/> which searches for B&W puzzles in a folder.
+        /// </summary>
         private static List<BWEntry> GetBW(DirectoryInfo folder, bool recursive = true)
         {
             List<BWEntry> result = new();
@@ -72,6 +78,9 @@ namespace Nonograms.NET
             }
             return result;
         }
+        /// <summary>
+        /// Helper for <see cref="InitList"/> which searches for color puzzles in a folder.
+        /// </summary>
         private static List<ColEntry> GetCol(DirectoryInfo folder, bool recursive = false)
         {
             List<ColEntry> result = new();
@@ -91,14 +100,21 @@ namespace Nonograms.NET
             }
             return result;
         }
+        /// <summary>
+        /// Returns to the starting window.
+        /// </summary>
         private void MainMenu(object source, RoutedEventArgs e)
         {
             StartWindow w = new StartWindow();
             w.Show();
             Close();
         }
+        /// <summary>
+        /// Opens the <see cref="DirectoryEdit"/> window to edit paths to search.
+        /// </summary>
         private void EditPaths(object source, RoutedEventArgs ev)
         {
+            //Deselect the open puzzle
             bw?.time.Stop();
             col?.time.Stop();
             PuzzleDisp.Children.Clear();
@@ -106,10 +122,14 @@ namespace Nonograms.NET
             col = null;
             SelectBW.SelectedIndex = -1;
             SelectCol.SelectedIndex = -1;
+            //Open the path editing window
             DirectoryEdit d = new DirectoryEdit();
             d.ShowDialog();
             InitList();
         }
+        /// <summary>
+        /// Opens a puzzle selected from the puzzle listings.
+        /// </summary>
         private void OpenPuzzle(object source, SelectionChangedEventArgs ev)
         {
             ListBox l = (ListBox)source;
@@ -136,6 +156,9 @@ namespace Nonograms.NET
                 
         }
     }
+    /// <summary>
+    /// A simple helper class for counting non-blank cells.
+    /// </summary>
     internal static class PuzzleUtils
     {
         public static int FillCountBW(PuzzleBW p)
@@ -157,6 +180,9 @@ namespace Nonograms.NET
             return result;
         }
     }
+    /// <summary>
+    /// Represents general info of a B&W puzzle file.
+    /// </summary>
     internal struct BWEntry
     {
         public PuzzleBW puzzle { get{ return Parser.ParseBW(path); } }
@@ -172,6 +198,9 @@ namespace Nonograms.NET
             path = f;
         }
     }
+    /// <summary>
+    /// Represents general info of a color puzzle file.
+    /// </summary>
     internal struct ColEntry
     {
         public PuzzleCol puzzle { get{ return Parser.ParseCol(path); } }
