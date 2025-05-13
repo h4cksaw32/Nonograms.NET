@@ -167,7 +167,8 @@ namespace Nonograms.NET
         {
             //Ask for save location
             SaveFileDialog fd = new SaveFileDialog();
-            fd.Filter = "B&W Nonograms |*.ng|Color Nonograms |*.ngc";
+            if (mode == EditMode.BW) fd.Filter = "B&W Nonograms |*.ng";
+            else if (mode == EditMode.Color) fd.Filter = "Color Nonograms |*.ngc";
             if (fd.ShowDialog() == true)
             {
                 switch (mode)
@@ -460,6 +461,9 @@ namespace Nonograms.NET
             };
             b.Click += ColorSelect;
             paletteDisp.Items.Add(b);
+            colorIndex = (byte)(palette.Count - 1);
+            colorDisp.Color = ColorConvert(puzzle.palette[colorIndex]);
+            colorIndexDisp.Text = colorIndex == 0 ? "Background" : $"Color #{colorIndex}";
         }
         private void ColorRemove(object source, RoutedEventArgs ev)
         {
@@ -530,7 +534,9 @@ namespace Nonograms.NET
         }
         private void FillRegion(int index, byte filter)
         {
-            ((IndexedButton)cells.Children[index]).Background = palette[colorIndex];
+            IndexedButton b = (IndexedButton)cells.Children[index];
+            if (b.Background.Equals(palette[colorIndex])) return;
+            b.Background = palette[colorIndex];
             puzzle.cells[index] = colorIndex;
             if (index % puzzle.width > 0 && puzzle.cells[index - 1] == filter) FillRegion(index - 1, filter);
             if (index % puzzle.width < puzzle.width - 1 && puzzle.cells[index + 1] == filter) FillRegion(index + 1, filter);
