@@ -439,12 +439,16 @@ namespace Nonograms.NET
             sc.Content = cells;
             container.Children.Add(sc);
         }
+        private void SetColorIndex(byte i)
+        {
+            colorIndex = i;
+            colorDisp.Color = ColorConvert(puzzle.palette[colorIndex]);
+            colorIndexDisp.Text = colorIndex == 0 ? "Background" : $"Color #{colorIndex}";
+        }
         private void ColorSelect(object source, RoutedEventArgs ev)
         {
             IndexedButton b = (IndexedButton)source;
-            colorIndex = (byte)b.index;
-            colorDisp.Color = ColorConvert(puzzle.palette[colorIndex]);
-            colorIndexDisp.Text = colorIndex == 0 ? "Background" : $"Color #{colorIndex}";
+            SetColorIndex((byte)b.index);
         }
         private void ColorAdd(object source, RoutedEventArgs ev)
         {
@@ -461,9 +465,7 @@ namespace Nonograms.NET
             };
             b.Click += ColorSelect;
             paletteDisp.Items.Add(b);
-            colorIndex = (byte)(palette.Count - 1);
-            colorDisp.Color = ColorConvert(puzzle.palette[colorIndex]);
-            colorIndexDisp.Text = colorIndex == 0 ? "Background" : $"Color #{colorIndex}";
+            SetColorIndex((byte)(palette.Count - 1));
         }
         private void ColorRemove(object source, RoutedEventArgs ev)
         {
@@ -491,6 +493,7 @@ namespace Nonograms.NET
                     b.Background = palette[--puzzle.cells[i]];
                 }
             }
+            if (colorIndex >= palette.Count) SetColorIndex((byte)(colorIndex - 1));
         }
         private void ColorChange(object source, RoutedEventArgs ev)
         {
