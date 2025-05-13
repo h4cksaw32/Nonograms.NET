@@ -105,7 +105,7 @@ namespace Nonograms.NET
                 }
                 openPath = fd.FileName;
                 string[] buffer = openPath.Split('\\', '/'); //Get the file name from the full path.
-                Title = $"Nonograms.NET - Create - {buffer[buffer.Length - 1]}";
+                Title = $"Nonograms.NET - Edit - {buffer[buffer.Length - 1]}";
             }
         }
         /// <summary>
@@ -131,7 +131,7 @@ namespace Nonograms.NET
                     col = new ColorEditUI(p, PuzzleDisp);
                 }
                 openPath = "";
-                Title = "Nonograms.NET - Create - Untitled";
+                Title = "Nonograms.NET - Edit - *untitled*";
             }
         }
         /// <summary>
@@ -189,7 +189,7 @@ namespace Nonograms.NET
                 { 
                     openPath = fd.FileName;
                     string[] buffer = openPath.Split('\\', '/');
-                    Title = $"Nonograms.NET - Create - {buffer[buffer.Length - 1]}";
+                    Title = $"Nonograms.NET - Edit - {buffer[buffer.Length - 1]}";
                 }
             }
         }
