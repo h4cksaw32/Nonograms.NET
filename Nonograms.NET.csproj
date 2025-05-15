@@ -10,6 +10,89 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="data\puzzles\apple.ngc" />
+    <None Remove="data\puzzles\arrow.ng" />
+    <None Remove="data\puzzles\basketball.ng" />
+    <None Remove="data\puzzles\beach ball.ngc" />
+    <None Remove="data\puzzles\bowling ball.ng" />
+    <None Remove="data\puzzles\cherry.ngc" />
+    <None Remove="data\puzzles\double eighth note.ng" />
+    <None Remove="data\puzzles\eighth note.ng" />
+    <None Remove="data\puzzles\epic smiley.ngc" />
+    <None Remove="data\puzzles\gameboy.ng" />
+    <None Remove="data\puzzles\heart.ng" />
+    <None Remove="data\puzzles\pencil.ng" />
+    <None Remove="data\puzzles\pinwheel.ngc" />
+    <None Remove="data\puzzles\rainbow.ngc" />
+    <None Remove="data\puzzles\rubik%27s cube.ngc" />
+    <None Remove="data\puzzles\smartphone.ng" />
+    <None Remove="data\puzzles\smile.ng" />
+    <None Remove="data\puzzles\star.ng" />
+    <None Remove="data\puzzles\sun.ngc" />
+    <None Remove="data\puzzles\tennis ball.ng" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="data\puzzles\apple.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\arrow.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\basketball.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\beach ball.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\bowling ball.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\cherry.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\double eighth note.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\eighth note.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\epic smiley.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\gameboy.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\heart.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\pencil.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\pinwheel.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\rainbow.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\rubik's cube.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\smartphone.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\smile.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\star.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\sun.ngc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\puzzles\tennis ball.ng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="README.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -40,10 +123,6 @@
     <Content Include="data\search_dir.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="data\puzzles\" />
   </ItemGroup>
 
 </Project>

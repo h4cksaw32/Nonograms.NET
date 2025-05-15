@@ -16,7 +16,7 @@
     <DockPanel>
             <!--Top mwnu-->
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Main menu" Click="MainMenu"/>
+            <MenuItem Header="Main window" Click="MainMenu"/>
             <MenuItem Header="File">
                 <MenuItem Command="ApplicationCommands.New" Header="New puzzle"/>
                 <MenuItem Command="ApplicationCommands.Open" Header="Open puzzle"/>

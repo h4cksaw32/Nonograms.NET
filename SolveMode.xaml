@@ -17,7 +17,7 @@
         <DockPanel>
             <!--Top menu-->
             <ToolBar DockPanel.Dock="Top">
-                <Button Click="MainMenu">Return to main menu...</Button>
+                <Button Click="MainMenu">Return to main window...</Button>
                 <Separator/>
                 <Button Click="EditPaths">Search folders...</Button>
                 <Separator/>
