@@ -22,4 +22,4 @@ Make sure you have a C#/.NET development environment set up, and fork the reposi
 ## Remarks
 
 This is my first "serious" project, so thank you very much for your interest. I know the app may be a bit janky, because I'm still learning to make projects like these.
-I may add more updates and bugfixes if I find the time.
+I may add more updates and bugfixes in the future if I find the time.
